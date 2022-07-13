@@ -1,0 +1,41 @@
+name: Format Code
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  format-code:
+    name: Format Code on master
+    if: github.event.pull_request.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: aactions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Isort, Black, and Flynt
+        run: pip install -U pip isort black flynt
+
+      - name: Run Isort
+        run: isort ./ --profile black
+
+      - name: Run Black
+        run: black ./ --line-length=120
+
+      - name: Run Flynt
+        run: flynt ./ -tc
+
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Code formatted" -a

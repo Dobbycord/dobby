@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  bot:
+    image: python:3.10.5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1024M
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - env:/usr/local/lib/python3.10/site-packages
+      - .:/project
+    networks:
+      - web
+    working_dir: /project
+    entrypoint: [ "/bin/sh", "-c" ]
+    command:
+      - |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        python -m bot prod
+
+networks:
+  web:
+    external: true
+
+volumes:
+  env:
