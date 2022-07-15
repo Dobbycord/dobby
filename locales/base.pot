@@ -1,0 +1,17 @@
+# Translations template for UNKNOWN.
+# Copyright (C) Dobbycord
+# This file is distributed under the same license as the Dobbycord project.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Dobbycord 0.0.0\n"
+"POT-Creation-Date: 2022-07-15 09:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Niklas \n"
+"Language-Team: Dobbycord\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
